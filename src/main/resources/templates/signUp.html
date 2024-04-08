@@ -19,34 +19,35 @@
 </head>
 
 <body>
-<form action="/member/signup" method="post"></form>
+<!-- action 속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
+<form action="/member/signup" method="post">
     <div class="wrapper">
         <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
         <div class="email">
             <h3 class="list">아이디<span id="Idsu"></span></h3>
-            <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+            <input id="email" name ="memberEmail" type="text" placeholder="이메일을 입력해 주세요.">
             <div id="emailError" class="error"></div>
         </div>
         <div class="name">
             <h3 class="list">이름<span id="namesu"></span></h3>
-            <input id="name"  type="text" placeholder="이름을 입력해 주세요.">
+            <input id="name"  name ="memberName" type="text" placeholder="이름을 입력해 주세요.">
             <div id="nameError" class="error"></div>
         </div>
         <div class="password">
             <h3 class="list">비밀번호<span id="passwordsu"></span></h3>
-            <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+            <input id="password" name ="memberPassword" type="password" placeholder="비밀번호를 입력해 주세요.">
             <div id="passwordError" class="error"></div>
         </div>
         <div class="passwordCheck">
          <h3 class="list">비밀번호 확인<span id="passwordChecksu"></span></h3>
-            <input id="passwordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
+            <input id="passwordCheck" name="memberPasswordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
             <div id="passwordCheckError" class="error"></div>
         </div>
         <div class="phone">
             <h3 class="list">휴대전화<span id="phonesu"></span></h3>
-            <input id="phone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
-            <input id="phone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
-            <input id="phone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
+            <input id="phone1" name= "memberPhone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
+            <input id="phone2" name= "memberPhone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
+            <input id="phone3" name= "memberPhone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
 
         </div>
         <div class="userInput">
@@ -98,5 +99,6 @@
             <button id="signUpButton" onclick="location.href = 'login.html'">가입하기</button>
         </div>
     </div>
+</form>
 </body>
 </html>

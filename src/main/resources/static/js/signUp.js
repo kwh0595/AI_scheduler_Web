@@ -117,7 +117,6 @@ function signUpCheck(){
     //document.getElementById("passwordCheckError").innerHTML=""
   }
 
-
   // 성별체크확인
   if(!gender_man && !gender_woman){
     document.getElementById("genderError").innerHTML="성별을 선택해주세요."
