@@ -3,9 +3,7 @@
 
 <head>
     <title>회원가입 페이지</title>
-
-    <link href="/css/signUp.css" rel="stylesheet" />
-    <script src="/js/signUp.js"></script>
+    <link href="resources/css/signUp.css?after" rel="stylesheet"/>
     <style>
         /* 스크롤 가능하도록 설정 */
         .privacyPolicy {
@@ -23,47 +21,32 @@
 <form action="/user/signup" method="post">
     <div class="wrapper">
         <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
-        <div class="email">
-            <h3 class="list">아이디<span id="Idsu"></span></h3>
-            <input id="email" name ="userEmail" type="text" placeholder="이메일을 입력해 주세요.">
-            <div id="emailError" class="error"></div>
-        </div>
         <div class="name">
             <h3 class="list">이름<span id="namesu"></span></h3>
             <input id="name"  name ="userName" type="text" placeholder="이름을 입력해 주세요.">
             <div id="nameError" class="error"></div>
+        </div>
+        <div class="email">
+            <h3 class="list">아이디<span id="Idsu"></span></h3>
+            <input id="email" name ="userEmail" type="text" placeholder="이메일을 입력해 주세요.">
+            <div id="emailError" class="error"></div>
         </div>
         <div class="password">
             <h3 class="list">비밀번호<span id="passwordsu"></span></h3>
             <input id="password" name ="userPassword" type="password" placeholder="비밀번호를 입력해 주세요.">
             <div id="passwordError" class="error"></div>
         </div>
-        <div class="passwordCheck">
-         <h3 class="list">비밀번호 확인<span id="passwordChecksu"></span></h3>
-            <input id="passwordCheck" name="userPasswordCheck" type="password" placeholder="비밀번호를 다시 입력해 주세요.">
-            <div id="passwordCheckError" class="error"></div>
-        </div>
-        <div class="phone">
-            <h3 class="list">휴대전화<span id="phonesu"></span></h3>
-            <input id="phone1" name= "userPhone1" type="text" size="1" maxlength="3" oninput="changePhone1()"> -
-            <input id="phone2" name= "userPhone2" type="text" size="3" maxlength="4" oninput="changePhone2()"> -
-            <input id="phone3" name= "userPhone3" type="text" size="3" maxlength="4" oninput="changePhone3()">
-
-        </div>
-        <div class="userInput">
-         <h3 class="list">주소<span id="addresssu"></span></h3>
-         <div id="address" class="int_id">
-         <span>
-         <input type="text" id="sample4" class="d_form mini line addressCheck" placeholder="우편번호" readonly>
-         <input type="button" id="addressButton" class="d_form mini" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" readonly>
-         </span>
-         <input type="text" id="sample4" class="d_form mini line" placeholder="도로명주소" readonly>
-         <input type="text" id="sample4" class="d_form mini line" placeholder="지번주소" readonly>
-         <span id="guide" style="color:#999;display:none"></span>
-         <input type="text" id="sample4" class="d_form mini line" placeholder="참고주소" readonly>
-         <input type="text" id="sample4" class="d_form mini line addressCheck" placeholder="상세주소" >
-         </div>
-            <div id="areaError" class="error"></div>
+        <div class ="info" id = "info__birth">
+            <h3 class = "list">생년월일<span id ="birth_date"></span></h3>
+            <select class = "box" id = "birth-year">
+                <option disabled selected>출생 연도</option>
+            </select>
+            <select class = "box" id = "birth-month">
+                <option disabled selected>월</option>
+            </select>
+            <select class = "box" id= "birth-day">
+                <option disabled selected>일</option>
+            </select>
         </div>
         <div class="gender">
             <h3 class="list">성별<span id="sexsu"></span></h3>
@@ -73,7 +56,7 @@
             <div id="genderError" class="error"></div>
             </div>
         </div>
-
+        
         <div class="line">
             <hr>
         </div>
@@ -101,4 +84,5 @@
     </div>
 </form>
 </body>
+<script src="resources/js/signUp.js?after"></script>
 </html>
