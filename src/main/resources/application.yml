@@ -9,7 +9,6 @@ spring:
     password: 20020619
   thymeleaf:
     cache: false
-
   # spring data jpa 설정
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect

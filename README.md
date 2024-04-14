@@ -20,3 +20,5 @@
 - 회원가입 페이지 요청
 - 클라이언트가 입력한 정보 서버로 전달
 - aws mysql db 연동
+- user Entity, DTO 구현
+- joinDate 필드는 권장되는 LocalDateTime로 설정(TimeStamp 보다)
