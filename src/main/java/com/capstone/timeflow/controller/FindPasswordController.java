@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FindPasswordController {
     // 비밀번호 찾기 페이지 요청
-    @GetMapping("/find-password")
+    @GetMapping("/findPassword")
     public String findPasswordForm() {
         return "findPassword";
     }
-    @PostMapping("/find-password")
+    @PostMapping("/findPassword")
     public String findPassword(@RequestParam("Id") String userId,
                                @RequestParam("phone") String phone
     ) {
