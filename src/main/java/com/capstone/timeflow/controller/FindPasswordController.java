@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class FindPasswordController {
     // 비밀번호 찾기 페이지 요청
-    @GetMapping("/findPassword")
+    @GetMapping("user/findPassword")
     public String findPasswordForm() {
         return "findPassword";
     }

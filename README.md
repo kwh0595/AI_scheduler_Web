@@ -28,6 +28,7 @@
 - user Entity, DTO 구현
 - joinDate 필드는 권장되는 LocalDateTime로 설정(TimeStamp 보다)
 - 아이디찾기 페이지 요청
+- 약관 엔티티 및 데이터 삽입(JPA)
 --------
 ## ✅문제 해결 과정
 - 프론트엔드
