@@ -48,7 +48,7 @@ public class UserEntity {
         //userEntity.setUserAge(userDTO.getUserAge());
         userEntity.setUserBirth(userDTO.getUserBirth());
         userEntity.setUserJoinDate(userDTO.getUserJoinDate());
-
+        userEntity.setUserSex(userDTO.getUserSex());
         // 나이 계산
         LocalDate today = LocalDate.now(); // 현재 날짜
         LocalDate birthDate = userDTO.getUserBirth(); // 사용자의 생년월일
