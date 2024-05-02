@@ -41,15 +41,19 @@ public class UserEntity {
     @Column(name = "userJoinDate")
     private LocalDateTime userJoinDate = LocalDateTime.now(); // 현재 시간으로 초기화
     public static UserEntity toUserEntity(UserDTO userDTO){
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName(userDTO.getUserName());
-        userEntity.setUserMail(userDTO.getUserMail());
-        userEntity.setUserPassword(userDTO.getUserPassword());
-        //userEntity.setUserAge(userDTO.getUserAge());
-        userEntity.setUserBirth(userDTO.getUserBirth());
-        userEntity.setUserJoinDate(userDTO.getUserJoinDate());
-        userEntity.setUserSex(userDTO.getUserSex());
-        // 나이 계산
+        UserEntity userEntity = new UserEntity(); //userEntity 객체 생성
+        userEntity.setUserName(userDTO.getUserName()); //이름
+        userEntity.setUserMail(userDTO.getUserMail()); // 메일
+        userEntity.setUserPassword(userDTO.getUserPassword()); //비밀번호
+        userEntity.setUserBirth(userDTO.getUserBirth());    //생년월일
+        // 가입날짜가 null이면 현재 시간을 사용
+        if (userDTO.getUserJoinDate() == null) {
+            userEntity.setUserJoinDate(LocalDateTime.now());
+        } else {
+            userEntity.setUserJoinDate(userDTO.getUserJoinDate());
+        }
+        userEntity.setUserSex(userDTO.getUserSex()); //성별
+        // 생년월일을 통해 나이 계산
         LocalDate today = LocalDate.now(); // 현재 날짜
         LocalDate birthDate = userDTO.getUserBirth(); // 사용자의 생년월일
         if (birthDate != null) {

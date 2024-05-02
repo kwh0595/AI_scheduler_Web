@@ -111,18 +111,41 @@ birthDayEl.addEventListener('focus', function() {
     }
   }
 });
-function updateBirthDateField() {
-  const year = document.querySelector('#birth-year').value;
-  const month = document.querySelector('#birth-month').value.padStart(2, '0'); // always 2 digits
-  const day = document.querySelector('#birth-day').value.padStart(2, '0'); // always 2 digits
-  if(year && month && day) {
-    document.querySelector('#completeBirthDate').value = `${year}-${month}-${day}`;
-  }
+function updateBirthDate() {
+  var year = document.getElementById("birth-year").value;
+  var month = document.getElementById("birth-month").value;
+  var day = document.getElementById("birth-day").value;
+  document.getElementById("completeBirthDate").value = year + '-' + month + '-' + day;
 }
 
-document.querySelector('#birth-year').addEventListener('change', updateBirthDateField);
-document.querySelector('#birth-month').addEventListener('change', updateBirthDateField);
-document.querySelector('#birth-day').addEventListener('change', updateBirthDateField);
+document.getElementById("birth-year").addEventListener("change", updateBirthDate);
+document.getElementById("birth-month").addEventListener("change", updateBirthDate);
+document.getElementById("birth-day").addEventListener("change", updateBirthDate);
+document.addEventListener('DOMContentLoaded', function() {
+  const yearSelect = document.getElementById('birth-year');
+  const monthSelect = document.getElementById('birth-month');
+  const daySelect = document.getElementById('birth-day');
+  const completeBirthDateInput = document.getElementById('completeBirthDate');
+
+  function updateCompleteBirthDate() {
+    const year = yearSelect.value;
+    const month = monthSelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    const day = daySelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    if (year && month && day) {
+      completeBirthDateInput.value = `${year}-${month}-${day}`;
+    } else {
+      completeBirthDateInput.value = ''; // 모든 필드가 선택되지 않았다면 입력값을 비웁니다.
+    }
+  }
+
+  // 각 셀렉트 박스에 대해 change 이벤트 리스너 등록
+  yearSelect.addEventListener('change', updateCompleteBirthDate);
+  monthSelect.addEventListener('change', updateCompleteBirthDate);
+  daySelect.addEventListener('change', updateCompleteBirthDate);
+
+  // 초기화를 위해 함수를 한 번 호출
+  updateCompleteBirthDate();
+});
 function change_btn(gender) {
   document.getElementById('sex').innerText = gender; // 선택된 성별을 표시
   document.getElementById('userSex').value = gender; // 숨겨진 필드에 성별 값 설정

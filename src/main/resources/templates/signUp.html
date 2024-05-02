@@ -42,35 +42,33 @@
         </div>
         <div class="name">
             <h3 class="list">이름<span id="namesu"></span></h3>
-            <input id="name" type="text" placeholder="이름을 입력해 주세요.">
+            <input id="name" name="userName" type="text" placeholder="이름을 입력해 주세요.">
             <div id="nameError" class="error"></div>
         </div>
         <div class="email">
             <h3 class="list">아이디<span id="Idsu"></span></h3>
-            <input id="email" type="text" placeholder="이메일을 입력해 주세요.">
+            <input id="email" name="userMail" type="text" placeholder="이메일을 입력해 주세요.">
             <div id="emailError" class="error"></div>
         </div>
         <div class="password">
             <h3 class="list">비밀번호<span id="passwordsu"></span></h3>
-            <input id="password" type="password" placeholder="비밀번호를 입력해 주세요.">
+            <input id="password" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요.">
             <div id="passwordError" class="error"></div>
         </div>
-        <form id="birthdayForm" action="/user/signup" method="post">
-            <div class ="info" id = "info__birth">
-                <h3 class = "list">생년월일<span id ="birth_date"></span></h3>
-                <select class = "box" id = "birth-year">
-                    <option disabled selected>출생 연도</option>
-                </select>
-                <select class = "box" id = "birth-month">
-                    <option disabled selected>월</option>
-                </select>
-                <select class = "box" id= "birth-day">
-                    <option disabled selected>일</option>
-                </select>
-            </div>
-            <input type="hidden" id="completeBirthDate" name="userBirth">
-            <button type="submit">Submit</button>
-        </form>
+        <div class ="info" id = "info__birth">
+            <h3 class = "list">생년월일<span id ="birth_date"></span></h3>
+            <select class = "box" id = "birth-year">
+                <option disabled selected>출생 연도</option>
+            </select>
+            <select class = "box" id = "birth-month">
+                <option disabled selected>월</option>
+            </select>
+            <select class = "box" id= "birth-day">
+                <option disabled selected>일</option>
+            </select>
+        </div>
+        <input type="hidden" id="completeBirthDate" name="userBirth">
+
 
         <div class="gender">
             <h3 class="list">성별<span id="sex"></span></h3>
@@ -546,7 +544,7 @@
         <label for="disagree">비동의</label><br>
 
         <div class="signUp">
-            <button id="signUpButton" onclick="location.href = 'logIn.html'">가입하기</button>
+            <button id="signUpButton" onclick="location.href = 'login.html'">가입하기</button>
         </div>
     </div>
 </form>
