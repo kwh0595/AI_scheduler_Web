@@ -35,7 +35,7 @@
 
 <body>
 <!-- action 속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
-<form action="/user/signup" method="post"> <!-- 프론트 이거 지우지 마세요-->
+<form action="/user/signup" method="post">
     <div class="wrapper">
         <div class="title">
             <h1 style="font-size: 21px;">회원가입</h1>
@@ -69,14 +69,14 @@
         </div>
         <input type="hidden" id="completeBirthDate" name="userBirth">
 
+
         <div class="gender">
             <h3 class="list">성별<span id="sex"></span></h3>
             <div class="buttons">
-                <button type="button" class="genders" onclick = "change_btn(event)">남성</button>
-                <button type="button" class="genders" onclick = "change_btn(event)">여성</button>
+                <button type="button" class="genders" onclick="change_btn('남성')">남성</button>
+                <button type="button" class="genders" onclick="change_btn('여성')">여성</button>
             </div>
         </div>
-
         <!-- 숨겨진 userSex 필드 -->
         <input type="hidden" id="userSex" name="userSex">
 
@@ -327,6 +327,7 @@
 
                 ② “홈페이지”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
             </p>
+            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
         <input type="radio" id="agree" name="consent" value="agree">
         <label for="agree">동의</label><br>
@@ -535,16 +536,18 @@
 
                 제1조 본 방침은 2024.04.17.부터 시행됩니다.
             </p>
+            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
-        <input type="radio" id="agree2" name="consent2" value="agree2">
-        <label for="agree2">동의</label><br>
-        <input type="radio" id="disagree2" name="consent2" value="disagree2">
-        <label for="disagree2">비동의</label><br>
+        <input type="radio" id="agree" name="consent" value="agree">
+        <label for="agree">동의</label><br>
+        <input type="radio" id="disagree" name="consent" value="disagree">
+        <label for="disagree">비동의</label><br>
 
         <div class="signUp">
-            <button id="signUpButton" onclick="location.href = 'logIn.html'">가입하기</button>
+            <button id="signUpButton" onclick="location.href = 'login.html'">가입하기</button>
         </div>
     </div>
+</form>
 </body>
 <script src="/js/signUp.js"></script>
 </html>
