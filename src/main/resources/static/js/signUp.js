@@ -1,4 +1,3 @@
-
 // 가입부분 체크
 
 function signUpCheck(){
@@ -57,17 +56,17 @@ function signUpCheck(){
   }
 }
 
-function change_btn(e){
+function change_btn(gender){
   var btns = document.querySelectorAll(".genders")
   btns.forEach(function(btn, i) {
-    if(e.currentTarget == btn){
+    if(gender.currentTarget == btn){
       btn.classList.add("active");
     }
     else{
       btn.classList.remove("active");
     }
   });
-  console.log(e.currentTarget);
+  console.log(gender.currentTarget);
 }
 
 const birthYearEl = document.querySelector('#birth-year')
@@ -146,10 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // 초기화를 위해 함수를 한 번 호출
   updateCompleteBirthDate();
 });
-function change_btn(gender) {
-  document.getElementById('sex').innerText = gender; // 선택된 성별을 표시
-  document.getElementById('userSex').value = gender; // 숨겨진 필드에 성별 값 설정
-}
 /**
  window.onload = function(){
   var hw = document.getElementById('hw');
@@ -158,3 +153,62 @@ function change_btn(gender) {
   })
 }
  */
+
+function Click(){
+  var agree_data;
+  if(document.getElementById("agree").checked){
+    agree_data="동의";
+  }
+  else if(document.getElementById("disagree").checked){
+    agree_data="비동의";
+  }
+  else{
+    alert("동의 버튼을 눌러주세요.");
+  }
+
+  if(agree_data.length!=0){
+    location.replace("search_list.php?id="+agree_data);
+  }
+}
+
+function Click2(){
+  var agree_data2;
+  if(document.getElementById("agree2").checked){
+    agree_data2="동의";
+  }
+  else if(document.getElementById("disagree2").checked){
+    agree_data2="비동의";
+  }
+  else{
+    alert("동의 버튼을 눌러주세요.");
+  }
+  if(agree_data2.length!=0){
+    location.replace("search_list.php?id="+agree_data2);
+  }
+}
+function change_btn(event) {
+  var buttons = document.querySelectorAll('.genders');
+  buttons.forEach(button => button.classList.remove('selected')); // 기존 선택된 버튼의 스타일 제거
+
+  var genderText = event.target.textContent;
+  event.target.classList.add('selected'); // 클릭된 버튼에 'selected' 클래스 추가
+  document.getElementById('userSex').value = genderText;
+  document.getElementById('sex').innerText = genderText;
+
+  localStorage.setItem('selectedGender', genderText); // 선택된 성별 localStorage에 저장
+}
+
+window.onload = function() {
+  var savedGender = localStorage.getItem('selectedGender');
+  if (savedGender) {
+    var buttons = document.querySelectorAll('.genders');
+    document.getElementById('userSex').value = savedGender;
+    document.getElementById('sex').innerText = savedGender;
+
+    buttons.forEach(button => {
+      if (button.textContent === savedGender) {
+        button.classList.add('selected'); // 저장된 성별에 해당하는 버튼에 'selected' 클래스 추가
+      }
+    });
+  }
+}

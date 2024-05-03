@@ -35,7 +35,7 @@
 
 <body>
 <!-- action 속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
-<form action="/user/signup" method="post">
+<form action="/user/signup" method="post"> <!-- 프론트 이거 지우지 마세요-->
     <div class="wrapper">
         <div class="title">
             <h1 style="font-size: 21px;">회원가입</h1>
@@ -69,14 +69,14 @@
         </div>
         <input type="hidden" id="completeBirthDate" name="userBirth">
 
-
         <div class="gender">
             <h3 class="list">성별<span id="sex"></span></h3>
             <div class="buttons">
-                <button type="button" class="genders" onclick="change_btn('남성')">남성</button>
-                <button type="button" class="genders" onclick="change_btn('여성')">여성</button>
+                <button type="button" class="genders" onclick = "change_btn(event)">남성</button>
+                <button type="button" class="genders" onclick = "change_btn(event)">여성</button>
             </div>
         </div>
+
         <!-- 숨겨진 userSex 필드 -->
         <input type="hidden" id="userSex" name="userSex">
 
@@ -327,7 +327,6 @@
 
                 ② “홈페이지”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
             </p>
-            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
         <input type="radio" id="agree" name="consent" value="agree">
         <label for="agree">동의</label><br>
@@ -374,7 +373,7 @@
 
                 회사는 이용자의 회사 서비스에 대한 회원가입을 위하여 다음과 같은 정보를 수집합니다.
 
-                필수 수집 정보: 이메일 주소, 비밀번호, 이름 및 생년월일
+                필수 수집 정보: 이메일 주소, 비밀번호, 이름 및 생년월일
 
 
 
@@ -502,7 +501,7 @@
 
                 제17조(개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항)
 
-                회사는 이용자에게 개별적인 맞춤서비스를 제공하기 위해 이용 정보를 저장하고 수시로 불러오는 개인정보 자동 수집장치(이하 '쿠키')를 사용합니다. 쿠키는 웹사이트를 운영하는데 이용되는 서버(http)가 이용자의 웹브라우저(PC 및 모바일을 포함)에게 보내는 소량의 정보이며 이용자의 저장공간에 저장되기도 합니다.  
+                회사는 이용자에게 개별적인 맞춤서비스를 제공하기 위해 이용 정보를 저장하고 수시로 불러오는 개인정보 자동 수집장치(이하 '쿠키')를 사용합니다. 쿠키는 웹사이트를 운영하는데 이용되는 서버(http)가 이용자의 웹브라우저(PC 및 모바일을 포함)에게 보내는 소량의 정보이며 이용자의 저장공간에 저장되기도 합니다.
                 이용자는 쿠키 설치에 대한 선택권을 가지고 있습니다. 따라서 이용자는 웹브라우저에서 옵션을 설정함으로써 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 아니면 모든 쿠키의 저장을 거부할 수도 있습니다.
                 다만, 쿠키의 저장을 거부할 경우에는 로그인이 필요한 회사의 일부 서비스는 이용에 어려움이 있을 수 있습니다.
 
@@ -536,15 +535,14 @@
 
                 제1조 본 방침은 2024.04.17.부터 시행됩니다.
             </p>
-            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
-        <input type="radio" id="agree" name="consent" value="agree">
-        <label for="agree">동의</label><br>
-        <input type="radio" id="disagree" name="consent" value="disagree">
-        <label for="disagree">비동의</label><br>
+        <input type="radio" id="agree2" name="consent2" value="agree2">
+        <label for="agree2">동의</label><br>
+        <input type="radio" id="disagree2" name="consent2" value="disagree2">
+        <label for="disagree2">비동의</label><br>
 
         <div class="signUp">
-            <button id="signUpButton" onclick="location.href = 'login.html'">가입하기</button>
+            <button id="signUpButton" onclick="location.href = 'logIn.html'">가입하기</button>
         </div>
     </div>
 </form>
