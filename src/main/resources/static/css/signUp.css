@@ -52,7 +52,7 @@ div{
 }
 
 .info {
-    position: relative; 
+    position: relative;
     padding-bottom: 60px;
 }
 
@@ -122,7 +122,7 @@ div{
 .signUp button {
     width: 100%;
     cursor: pointer;
-    height: 30px; 
+    height: 30px;
     background-color: #0056b3; /* 버튼의 배경색을 지정 */
     color: white; /* 버튼의 글자색을 지정 */
     border: none; /* 버튼의 테두리를 제거 */
@@ -134,4 +134,7 @@ div{
     color:red;
     font-weight: 700;
 }
-
+.selected {
+    background-color: blue;
+    color: white;
+}

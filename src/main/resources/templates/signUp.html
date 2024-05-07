@@ -3,37 +3,56 @@
 
 <head>
     <title>회원가입 페이지</title>
-    <link href="/css/signUp.css?after" rel="stylesheet"/>
+    <link href="/css/signUp.css" rel="stylesheet" />
     <style>
         /* 스크롤 가능하도록 설정 */
         .privacyPolicy {
-            height: 150px; /* 약관 칸의 높이를 지정하여 스크롤이 가능하도록 함 */
-            overflow: auto; /* 내용이 벗어날 경우 스크롤이 생기도록 함 */
-            border: 1px solid #ccc; /* 경계선 추가 */
-            padding: 10px; /* 내부 여백 추가 */
-            margin-top: 20px; /* 위쪽 여백 추가 */
+            height: 150px;
+            /* 약관 칸의 높이를 지정하여 스크롤이 가능하도록 함 */
+            overflow: auto;
+            /* 내용이 벗어날 경우 스크롤이 생기도록 함 */
+            border: 1px solid #ccc;
+            /* 경계선 추가 */
+            padding: 10px;
+            /* 내부 여백 추가 */
+            margin-top: 20px;
+            /* 위쪽 여백 추가 */
+        }
+        .servicePolicy{
+            height: 150px;
+            /* 약관 칸의 높이를 지정하여 스크롤이 가능하도록 함 */
+            overflow: auto;
+            /* 내용이 벗어날 경우 스크롤이 생기도록 함 */
+            border: 1px solid #ccc;
+            /* 경계선 추가 */
+            padding: 10px;
+            /* 내부 여백 추가 */
+            margin-top: 20px;
+            /* 위쪽 여백 추가 */
         }
     </style>
 </head>
 
 <body>
 <!-- action 속성: form에 작성한 데이터를 어디로 보낼지 지정 -->
-<form action="/user/signup" method="post">
+<form action="/user/signup" method="post"> <!-- 프론트 이거 지우지 마세요-->
     <div class="wrapper">
-        <div class="title"><h1 style="font-size: 21px;">회원가입</h1></div>
+        <div class="title">
+            <h1 style="font-size: 21px;">회원가입</h1>
+        </div>
         <div class="name">
             <h3 class="list">이름<span id="namesu"></span></h3>
-            <input id="name"  name ="userName" type="text" placeholder="이름을 입력해 주세요.">
+            <input id="name" name="userName" type="text" placeholder="이름을 입력해 주세요.">
             <div id="nameError" class="error"></div>
         </div>
         <div class="email">
             <h3 class="list">아이디<span id="Idsu"></span></h3>
-            <input id="email" name ="userEmail" type="text" placeholder="이메일을 입력해 주세요.">
+            <input id="email" name="userMail" type="text" placeholder="이메일을 입력해 주세요.">
             <div id="emailError" class="error"></div>
         </div>
         <div class="password">
             <h3 class="list">비밀번호<span id="passwordsu"></span></h3>
-            <input id="password" name ="userPassword" type="password" placeholder="비밀번호를 입력해 주세요.">
+            <input id="password" name="userPassword" type="password" placeholder="비밀번호를 입력해 주세요.">
             <div id="passwordError" class="error"></div>
         </div>
         <div class ="info" id = "info__birth">
@@ -48,19 +67,24 @@
                 <option disabled selected>일</option>
             </select>
         </div>
+        <input type="hidden" id="completeBirthDate" name="userBirth">
+
         <div class="gender">
-            <h3 class="list">성별<span id="sexsu"></span></h3>
-            <div class = "buttons">
-            <button type="button" class = "sex-m button">남성</button>
-            <button type="button" class = "sex-w button">여성</button>
-            <div id="genderError" class="error"></div>
+            <h3 class="list">성별<span id="sex"></span></h3>
+            <div class="buttons">
+                <button type="button" class="genders" onclick = "change_btn(event)">남성</button>
+                <button type="button" class="genders" onclick = "change_btn(event)">여성</button>
             </div>
         </div>
-        
+
+        <!-- 숨겨진 userSex 필드 -->
+        <input type="hidden" id="userSex" name="userSex">
+
         <div class="line">
             <hr>
         </div>
-        <div class="privacyPolicy">
+
+        <div class="servicePolicy">
             <h2>서비스 이용약관</h2>
             <p>
                 제1조(목적) 이 약관은 timeflow(전자상거래 사업자)가 운영하는 timeflow(이하 “홈페이지”이라 한다)에서 제공하는 인터넷 관련 서비스(이하 “서비스”라 한다)를 이용함에 있어 홈페이지와 이용자의 권리․의무 및 책임사항을 규정함을 목적으로 합니다.
@@ -303,20 +327,14 @@
 
                 ② “홈페이지”과 이용자 간에 제기된 전자상거래 소송에는 한국법을 적용합니다.
             </p>
-            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
+        <input type="radio" id="agree" name="consent" value="agree">
+        <label for="agree">동의</label><br>
+        <input type="radio" id="disagree" name="consent" value="disagree">
+        <label for="disagree">비동의</label><br>
 
-        <form>
-            <!-- 기존의 개인정보 동의 항목 -->
-            <p>서비스이용에 동의하십니까?</p>
-            <input type="radio" id="agree" name="consent" value="agree">
-            <label for="agree">동의</label><br>
-            <input type="radio" id="disagree" name="consent" value="disagree">
-            <label for="disagree">비동의</label><br>
-            <!-- 추가로 동의/비동의를 선택할 수 있는 동그란 칸 -->
-          </form>
         <div class="privacyPolicy">
-            <h2>개인정보처리방침</h2>
+            <h2>개인정보 처리방침</h2>
             <p>
                 제1조(목적)
 
@@ -517,23 +535,16 @@
 
                 제1조 본 방침은 2024.04.17.부터 시행됩니다.
             </p>
-            <!-- 내용이 길 경우 스크롤이 가능합니다. -->
         </div>
+        <input type="radio" id="agree2" name="consent2" value="agree2">
+        <label for="agree2">동의</label><br>
+        <input type="radio" id="disagree2" name="consent2" value="disagree2">
+        <label for="disagree2">비동의</label><br>
 
-        <form>
-            <!-- 기존의 개인정보 동의 항목 -->
-            <p>개인정보이용에 동의하십니까?</p>
-            <input type="radio" id="agree" name="consent" value="agree">
-            <label for="agree">동의</label><br>
-            <input type="radio" id="disagree" name="consent" value="disagree">
-            <label for="disagree">비동의</label><br>
-            <!-- 추가로 동의/비동의를 선택할 수 있는 동그란 칸 -->
-        </form>
         <div class="signUp">
-            <button id="signUpButton" onclick="location.href = 'login.html'">가입하기</button>
+            <button id="signUpButton" onclick="location.href = 'logIn.html'">가입하기</button>
         </div>
     </div>
-</form>
 </body>
-<script src="/js/signUp.js?after"></script>
+<script src="/js/signUp.js"></script>
 </html>

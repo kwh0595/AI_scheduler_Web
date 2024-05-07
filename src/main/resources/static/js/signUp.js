@@ -1,59 +1,3 @@
-// 휴대폰 번호 입력 부분
-function changePhone1(){
-    const phone1 = document.getElementById("phone1").value // 010
-    if(phone1.length === 3){
-        document.getElementById("phone2").focus();
-    }
-}
-function changePhone2(){
-    const phone2 = document.getElementById("phone2").value // 010
-    if(phone2.length === 4){
-        document.getElementById("phone3").focus();
-    }
-}
-function changePhone3(){
-    const phone3 = document.getElementById("phone3").value // 010
-    if(phone3.length === 4){
-      document.getElementById("sendMessage").focus();
-      document.getElementById("sendMessage").setAttribute("style","background-color:yellow;")
-      document.getElementById("sendMessage").disabled = false;
-    }
-}
-
-let processID = -1;
-
-const getToken = () => {
-
-  // 인증확인 버튼 활성화
-  document.getElementById("completion").setAttribute("style","background-color:yellow;")
-  document.getElementById("completion").disabled = false;
-
-  if (processID != -1) clearInterval(processID);
-  const token = String(Math.floor(Math.random() * 1000000)).padStart(6, "0");
-  document.getElementById("certificationNumber").innerText = token;
-  let time = 180;
-  processID = setInterval(function () {
-    if (time < 0 || document.getElementById("sendMessage").disabled) {
-      clearInterval(processID);
-      initButton();
-      return;
-    }
-    let mm = String(Math.floor(time / 60)).padStart(2, "0");
-    let ss = String(time % 60).padStart(2, "0");
-    let result = mm + ":" + ss;
-    document.getElementById("timeLimit").innerText = result;
-    time--;
-  }, 50);
-};
-
-function checkCompletion(){
-  alert("문자 인증이 완료되었습니다.")
-  initButton();
-  document.getElementById("completion").innerHTML="인증완료"
-  document.getElementById("signUpButton").disabled = false;
-  document.getElementById("signUpButton").setAttribute("style","background-color:yellow;")
-}
-
 
 // 가입부분 체크
 
@@ -93,30 +37,6 @@ function signUpCheck(){
     document.getElementById("nameError").innerHTML=""
   }
 
-
-  // 비밀번호 확인
-  if(password !== passwordCheck){
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML="비밀번호가 동일하지 않습니다."
-    check = false
-  }else{
-    document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-  }
-
-  if(password===""){
-    document.getElementById("passwordError").innerHTML="비밀번호를 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordError").innerHTML=""
-  }
-  if(passwordCheck===""){
-    document.getElementById("passwordCheckError").innerHTML="비밀번호를 다시 입력해주세요."
-    check = false
-  }else{
-    //document.getElementById("passwordCheckError").innerHTML=""
-  }
-
   // 성별체크확인
   if(!gender_man && !gender_woman){
     document.getElementById("genderError").innerHTML="성별을 선택해주세요."
@@ -124,18 +44,172 @@ function signUpCheck(){
   }else{
     document.getElementById("genderError").innerHTML=""
   }
-  
+
   if(check){
     document.getElementById("emailError").innerHTML=""
     document.getElementById("nameError").innerHTML=""
     document.getElementById("passwordError").innerHTML=""
-    document.getElementById("passwordCheckError").innerHTML=""
-    document.getElementById("areaError").innerHTML=""
-    document.getElementById("genderError").innerHTML=""
-    
+
     //비동기 처리이벤트
     setTimeout(function() {
       alert("가입이 완료되었습니다.")
-  },0);
+    },0);
+  }
+}
+
+function change_btn(gender){
+  var btns = document.querySelectorAll(".genders")
+  btns.forEach(function(btn, i) {
+    if(gender.currentTarget == btn){
+      btn.classList.add("active");
+    }
+    else{
+      btn.classList.remove("active");
+    }
+  });
+  console.log(gender.currentTarget);
+}
+
+const birthYearEl = document.querySelector('#birth-year')
+isYearOptionExisted = false;
+birthYearEl.addEventListener('focus', function() {
+  if(!isYearOptionExisted) {
+    isYearOptionExisted = true
+    for(var i = 1950; i<=2024; i++){
+      const YearOption = document.createElement('option')
+      YearOption.setAttribute('value', i)
+      YearOption.innerText = i
+      this.appendChild(YearOption);
+    }
+  }
+});
+
+const birthMonthEl = document.querySelector('#birth-month')
+isMonthOptionExisted = false;
+birthMonthEl.addEventListener('focus', function() {
+  if(!isMonthOptionExisted) {
+    isMonthOptionExisted = true
+    for(var i = 1; i<=12; i++){
+      const MonthOption = document.createElement('option')
+      MonthOption.setAttribute('value', i)
+      MonthOption.innerText = i
+      this.appendChild(MonthOption);
+    }
+  }
+});
+
+const birthDayEl = document.querySelector('#birth-day')
+isDayOptionExisted = false;
+birthDayEl.addEventListener('focus', function() {
+  if(!isDayOptionExisted) {
+    isDayOptionExisted = true
+    for(var i = 1; i<=31; i++){
+      const DayOption = document.createElement('option')
+      DayOption.setAttribute('value', i)
+      DayOption.innerText = i
+      this.appendChild(DayOption);
+    }
+  }
+});
+function updateBirthDate() {
+  var year = document.getElementById("birth-year").value;
+  var month = document.getElementById("birth-month").value;
+  var day = document.getElementById("birth-day").value;
+  document.getElementById("completeBirthDate").value = year + '-' + month + '-' + day;
+}
+
+document.getElementById("birth-year").addEventListener("change", updateBirthDate);
+document.getElementById("birth-month").addEventListener("change", updateBirthDate);
+document.getElementById("birth-day").addEventListener("change", updateBirthDate);
+document.addEventListener('DOMContentLoaded', function() {
+  const yearSelect = document.getElementById('birth-year');
+  const monthSelect = document.getElementById('birth-month');
+  const daySelect = document.getElementById('birth-day');
+  const completeBirthDateInput = document.getElementById('completeBirthDate');
+
+  function updateCompleteBirthDate() {
+    const year = yearSelect.value;
+    const month = monthSelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    const day = daySelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    if (year && month && day) {
+      completeBirthDateInput.value = `${year}-${month}-${day}`;
+    } else {
+      completeBirthDateInput.value = ''; // 모든 필드가 선택되지 않았다면 입력값을 비웁니다.
+    }
+  }
+
+  // 각 셀렉트 박스에 대해 change 이벤트 리스너 등록
+  yearSelect.addEventListener('change', updateCompleteBirthDate);
+  monthSelect.addEventListener('change', updateCompleteBirthDate);
+  daySelect.addEventListener('change', updateCompleteBirthDate);
+
+  // 초기화를 위해 함수를 한 번 호출
+  updateCompleteBirthDate();
+});
+/**
+ window.onload = function(){
+  var hw = document.getElementById('hw');
+  hw.addEventListener('click', function(){
+    alert('Hello world');
+  })
+}
+ */
+
+function Click(){
+  var agree_data;
+  if(document.getElementById("agree").checked){
+    agree_data="동의";
+  }
+  else if(document.getElementById("disagree").checked){
+    agree_data="비동의";
+  }
+  else{
+    alert("동의 버튼을 눌러주세요.");
+  }
+
+  if(agree_data.length!=0){
+    location.replace("search_list.php?id="+agree_data);
+  }
+}
+
+function Click2(){
+  var agree_data2;
+  if(document.getElementById("agree2").checked){
+    agree_data2="동의";
+  }
+  else if(document.getElementById("disagree2").checked){
+    agree_data2="비동의";
+  }
+  else{
+    alert("동의 버튼을 눌러주세요.");
+  }
+  if(agree_data2.length!=0){
+    location.replace("search_list.php?id="+agree_data2);
+  }
+}
+function change_btn(event) {
+  var buttons = document.querySelectorAll('.genders');
+  buttons.forEach(button => button.classList.remove('selected')); // 기존 선택된 버튼의 스타일 제거
+
+  var genderText = event.target.textContent;
+  event.target.classList.add('selected'); // 클릭된 버튼에 'selected' 클래스 추가
+  document.getElementById('userSex').value = genderText;
+  document.getElementById('sex').innerText = genderText;
+
+  localStorage.setItem('selectedGender', genderText); // 선택된 성별 localStorage에 저장
+}
+
+window.onload = function() {
+  var savedGender = localStorage.getItem('selectedGender');
+  if (savedGender) {
+    var buttons = document.querySelectorAll('.genders');
+    document.getElementById('userSex').value = savedGender;
+    document.getElementById('sex').innerText = savedGender;
+
+    buttons.forEach(button => {
+      if (button.textContent === savedGender) {
+        button.classList.add('selected'); // 저장된 성별에 해당하는 버튼에 'selected' 클래스 추가
+      }
+    });
   }
 }

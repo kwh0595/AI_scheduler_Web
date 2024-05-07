@@ -1,4 +1,3 @@
-/*
 package com.capstone.timeflow.config;
 
 import lombok.RequiredArgsConstructor;
@@ -19,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
+
     @Bean //password 암호화를 위한 BCryptPasswordEncoder 클래스 생성 및 등록
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -33,12 +33,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(AbstractHttpConfigurer::disable) //로컬에서 확인하기 위해 csrf 비활성화
-                .authorizeHttpRequests(requests -> requests
-                        .requestMatchers("/", "/login", "/join").permitAll() //해당 페이지에서는 로그인 없이 접근 가능
+                .csrf(AbstractHttpConfigurer::disable) // 로컬에서 확인하기 위해 csrf 비활성화
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/login", "/join",
+                                "/user/signup", "/user/findId", "/user/findPassword").permitAll() // 해당 경로에서는 로그인 없이 접근 가능
                         .anyRequest().authenticated()
                 )
-                .formLogin(form -> form //성공하면 메인 페이지로 이동
+                .formLogin(form -> form // 성공하면 메인 페이지로 이동
                         .loginPage("/")
                         .defaultSuccessUrl("/", true)
                         .permitAll()
@@ -47,4 +48,3 @@ public class SecurityConfig {
         return http.build();
     }
 }
-*/
