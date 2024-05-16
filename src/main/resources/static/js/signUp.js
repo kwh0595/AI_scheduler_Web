@@ -44,18 +44,18 @@ function signUpCheck(){
   }else{
     document.getElementById("genderError").innerHTML=""
   }
-
+  
   if(check){
     document.getElementById("emailError").innerHTML=""
     document.getElementById("nameError").innerHTML=""
     document.getElementById("passwordError").innerHTML=""
-
+    
     //비동기 처리이벤트
     setTimeout(function() {
       alert("가입이 완료되었습니다.")
-    },0);
+  },0);
   }
-}
+};
 
 function change_btn(gender){
   var btns = document.querySelectorAll(".genders")
@@ -185,31 +185,5 @@ function Click2(){
   }
   if(agree_data2.length!=0){
     location.replace("search_list.php?id="+agree_data2);
-  }
-}
-function change_btn(event) {
-  var buttons = document.querySelectorAll('.genders');
-  buttons.forEach(button => button.classList.remove('selected')); // 기존 선택된 버튼의 스타일 제거
-
-  var genderText = event.target.textContent;
-  event.target.classList.add('selected'); // 클릭된 버튼에 'selected' 클래스 추가
-  document.getElementById('userSex').value = genderText;
-  document.getElementById('sex').innerText = genderText;
-
-  localStorage.setItem('selectedGender', genderText); // 선택된 성별 localStorage에 저장
-}
-
-window.onload = function() {
-  var savedGender = localStorage.getItem('selectedGender');
-  if (savedGender) {
-    var buttons = document.querySelectorAll('.genders');
-    document.getElementById('userSex').value = savedGender;
-    document.getElementById('sex').innerText = savedGender;
-
-    buttons.forEach(button => {
-      if (button.textContent === savedGender) {
-        button.classList.add('selected'); // 저장된 성별에 해당하는 버튼에 'selected' 클래스 추가
-      }
-    });
   }
 }
