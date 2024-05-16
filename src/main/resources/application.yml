@@ -10,6 +10,10 @@ spring:
   thymeleaf:
     cache: false
   # spring data jpa 설정
+  security:
+    user:
+      name: user
+      password: 1111
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     open-in-view: false

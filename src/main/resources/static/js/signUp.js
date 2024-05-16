@@ -1,61 +1,59 @@
-//아이디
-let elInputUsername = document.querySelector('#email');
-let elSuccessMessage = document.querySelector('.success-message');
-let elFailureMessage = document.querySelector('.failure-message');
 
-//비밀번호
-let elInputPassword = document.querySelector('#password');
-let elStrongPasswordMessage = document.querySelector('.strongPassword-message');
+// 가입부분 체크
 
-//버튼 비활성화
-var elSignUpButton = document.getElementById('signUpButton');
+function signUpCheck(){
 
-function strongPassword(str) {
-  return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,20}$/.test(str);
-}
+  let email = document.getElementById("email").value
+  let name = document.getElementById("name").value
+  let password = document.getElementById("password").value
+  let passwordCheck = document.getElementById("passwordCheck").value
+  let area = document.getElementById("area").value
+  let gender_man = document.getElementById("gender_man").checked
+  let gender_woman = document.getElementById("gender_woman").checked
+  let check = true;
 
-elInputUsername.onkeyup = function () {
-  // 이메일 주소가 올바른 형식인지 확인
-  var isValidEmail = validateEmail(elInputUsername.value);
-
-  // 이메일 주소가 올바른 경우
-  if (isValidEmail) {
-    elSuccessMessage.classList.remove('hide');
-    elFailureMessage.classList.add('hide');
-    elSignUpButton.disabled = false; // 버튼 활성화
-  } else {
-    elSuccessMessage.classList.add('hide');
-    elFailureMessage.classList.remove('hide');
-    elSignUpButton.disabled = true; // 버튼 비활성화
-  }
-}
-
-// 이메일 주소 유효성 검사 함수
-function validateEmail(email) {
-  // 이메일 주소 유효성을 확인하는 코드 작성 (정규표현식 등)
-  // 유효한 이메일 주소인 경우 true 반환, 그렇지 않으면 false 반환
-  var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-}
-
-elInputPassword.onkeyup = function () {
-  // console.log(elInputPassword.value);
-  // 값을 입력한 경우
-  if (elInputPassword.value.length !== 0) {
-    if(strongPassword(elInputPassword.value)) {
-      elStrongPasswordMessage.classList.add('hide'); // 실패 메시지가 가려져야 함
-      elSignUpButton.disabled=false;
+  // 이메일확인
+  if(email.includes('@')){
+    let emailId = email.split('@')[0]
+    let emailServer = email.split('@')[1]
+    if(emailId === "" || emailServer === ""){
+      document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
+      check = false
     }
-    else {
-      elStrongPasswordMessage.classList.remove('hide'); // 실패 메시지가 보여야 함
-      elSignUpButton.disabled=true;
+    else{
+      document.getElementById("emailError").innerHTML=""
     }
+  }else{
+    document.getElementById("emailError").innerHTML="이메일이 올바르지 않습니다."
+    check = false
   }
-  // 값을 입력하지 않은 경우 (지웠을 때)
-  // 모든 메시지를 가린다.
-  else {
-    elStrongPasswordMessage.classList.add('hide');
-    elSignUpButton.disabled=true;
+
+
+  // 이름확인
+  if(name===""){
+    document.getElementById("nameError").innerHTML="이름이 올바르지 않습니다."
+    check = false
+  }else{
+    document.getElementById("nameError").innerHTML=""
+  }
+
+  // 성별체크확인
+  if(!gender_man && !gender_woman){
+    document.getElementById("genderError").innerHTML="성별을 선택해주세요."
+    check = false
+  }else{
+    document.getElementById("genderError").innerHTML=""
+  }
+  
+  if(check){
+    document.getElementById("emailError").innerHTML=""
+    document.getElementById("nameError").innerHTML=""
+    document.getElementById("passwordError").innerHTML=""
+    
+    //비동기 처리이벤트
+    setTimeout(function() {
+      alert("가입이 완료되었습니다.")
+  },0);
   }
 };
 
@@ -113,15 +111,49 @@ birthDayEl.addEventListener('focus', function() {
     }
   }
 });
+function updateBirthDate() {
+  var year = document.getElementById("birth-year").value;
+  var month = document.getElementById("birth-month").value;
+  var day = document.getElementById("birth-day").value;
+  document.getElementById("completeBirthDate").value = year + '-' + month + '-' + day;
+}
 
-/** 
-window.onload = function(){
+document.getElementById("birth-year").addEventListener("change", updateBirthDate);
+document.getElementById("birth-month").addEventListener("change", updateBirthDate);
+document.getElementById("birth-day").addEventListener("change", updateBirthDate);
+document.addEventListener('DOMContentLoaded', function() {
+  const yearSelect = document.getElementById('birth-year');
+  const monthSelect = document.getElementById('birth-month');
+  const daySelect = document.getElementById('birth-day');
+  const completeBirthDateInput = document.getElementById('completeBirthDate');
+
+  function updateCompleteBirthDate() {
+    const year = yearSelect.value;
+    const month = monthSelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    const day = daySelect.value.padStart(2, '0'); // 한자리 숫자 앞에 0 붙이기
+    if (year && month && day) {
+      completeBirthDateInput.value = `${year}-${month}-${day}`;
+    } else {
+      completeBirthDateInput.value = ''; // 모든 필드가 선택되지 않았다면 입력값을 비웁니다.
+    }
+  }
+
+  // 각 셀렉트 박스에 대해 change 이벤트 리스너 등록
+  yearSelect.addEventListener('change', updateCompleteBirthDate);
+  monthSelect.addEventListener('change', updateCompleteBirthDate);
+  daySelect.addEventListener('change', updateCompleteBirthDate);
+
+  // 초기화를 위해 함수를 한 번 호출
+  updateCompleteBirthDate();
+});
+/**
+ window.onload = function(){
   var hw = document.getElementById('hw');
   hw.addEventListener('click', function(){
     alert('Hello world');
   })
 }
-*/
+ */
 
 function Click(){
   var agree_data;
@@ -155,4 +187,3 @@ function Click2(){
     location.replace("search_list.php?id="+agree_data2);
   }
 }
-

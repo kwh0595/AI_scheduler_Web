@@ -134,3 +134,7 @@ div{
     color:red;
     font-weight: 700;
 }
+.selected {
+    background-color: blue;
+    color: white;
+}
