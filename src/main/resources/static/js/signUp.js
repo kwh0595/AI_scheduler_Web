@@ -1,4 +1,3 @@
-
 // 가입부분 체크
 
 function signUpCheck(){
