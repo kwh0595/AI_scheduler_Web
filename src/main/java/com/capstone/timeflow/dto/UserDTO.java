@@ -1,5 +1,6 @@
 package com.capstone.timeflow.dto;
 
+import com.capstone.timeflow.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,9 @@ public class UserDTO {
     private String userSex;
     private Integer userAge;
     private LocalDateTime userJoinDate;
+    private Role role;
 
-    public Long getUserId() {
-        return userId;
-    }
+
 
     public void setUserId(Long userId) {
         this.userId = userId;
@@ -85,5 +85,13 @@ public class UserDTO {
 
     public void setUserJoinDate(LocalDateTime userJoinDate) {
         this.userJoinDate = userJoinDate;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

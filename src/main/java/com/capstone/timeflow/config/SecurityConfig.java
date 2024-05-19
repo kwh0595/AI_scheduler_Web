@@ -1,5 +1,6 @@
 package com.capstone.timeflow.config;
 
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -10,15 +11,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
 @RequiredArgsConstructor
-public class SecurityConfig {
-
+public class SecurityConfig{
     @Bean //password 암호화를 위한 BCryptPasswordEncoder 클래스 생성 및 등록
     public static BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -36,13 +39,15 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // 로컬에서 확인하기 위해 csrf 비활성화
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/join",
-                                "/user/signup", "/user/findId", "/user/findPassword").permitAll() // 해당 경로에서는 로그인 없이 접근 가능
+                                "/user/signup", "/user/findId","/chat","/ws/chat", "/user/findPassword").permitAll() // 해당 경로에서는 로그인 없이 접근 가능
+                        .requestMatchers("/favicon.ico").permitAll()
+                        .requestMatchers("/login/info").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form // 성공하면 메인 페이지로 이동
                         .loginPage("/")
-                        .defaultSuccessUrl("/", true)
                         .permitAll()
+                        .defaultSuccessUrl("/login", true)
                 )
                 .logout(LogoutConfigurer::permitAll);
         return http.build();

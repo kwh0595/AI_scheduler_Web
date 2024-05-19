@@ -23,58 +23,73 @@
 <body>
 <div class="find-id-form">
   <h2>아이디 찾기</h2>
-  <form action="/user/findId" method="post" onsubmit="event.preventDefault(); validateForm();">
+  <form onsubmit="event.preventDefault(); validateForm();">
     <div class="form-group">
       <label for="userName">이름:</label>
       <input type="text" id="userName" name="name" required>
       <span id="name_error_message"></span>
     </div>
     <div class="form-group">
-      <label for="userPhone">생년월일:</label>
-      <input type="tel" id="userPhone" name="phone" required>
-      <span id="phone_error_message"></span>
+      <label for="userBirth">생년월일:</label>
+      <input type="date" id="userBirth" name="birth" required>
+      <span id="birthday_error_message"></span>
     </div>
     <button type="submit">아이디 찾기</button>
   </form>
 </div>
 
 <div id="popup_message" class="popup"></div>
-
 <script>
+  // findID.js
   function validateForm() {
-    var nameInput = document.querySelector('input[name="name"]');
-    var phoneInput = document.querySelector('input[name="phone"]');
+    var nameInput = document.getElementById('userName').value;
+    var birthInput = document.getElementById('userBirth').value;
     var popupMessage = document.getElementById('popup_message');
-    if (nameInput.value === "") {
-      document.getElementById('name_error_message').innerHTML = "이름을 입력해주세요.";
-      document.getElementById('phone_error_message').innerHTML = "";
-      popupMessage.innerHTML = "";
-    } else if (phoneInput.value === "") {
-      document.getElementById('phone_error_message').innerHTML = "전화번호를 입력해주세요.";
-      document.getElementById('name_error_message').innerHTML = "";
-      popupMessage.innerHTML = "";
-    } else {
-      // 아이디 찾기 로직
-      var foundId = findId(nameInput.value, phoneInput.value);
-      if (foundId) {
-        popupMessage.innerHTML = "아이디는 " + foundId + "입니다.";
-      } else {
-        popupMessage.innerHTML = "일치하는 아이디가 없습니다.";
-      }
-      document.getElementById('name_error_message').innerHTML = "";
-      document.getElementById('phone_error_message').innerHTML = "";
-      popupMessage.style.display = 'block'; // 팝업 메시지를 보이도록 설정
+    var nameErrorMessage = document.getElementById('name_error_message');
+    var birthdayErrorMessage = document.getElementById('birthday_error_message');
+
+    if (!nameInput) {
+      nameErrorMessage.innerHTML = "이름을 입력해주세요.";
+      birthdayErrorMessage.innerHTML = "";
+      popupMessage.style.display = 'none'; // 에러 메시지 출력 시 팝업 숨기기
+      return; // 폼 제출 중단
     }
+
+    if (!birthInput) {
+      birthdayErrorMessage.innerHTML = "생년월일을 입력해주세요.";
+      nameErrorMessage.innerHTML = "";
+      popupMessage.style.display = 'none'; // 에러 메시지 출력 시 팝업 숨기기
+      return; // 폼 제출 중단
+    }
+
+    // 아이디 찾기 로직
+    var foundId = findId(nameInput, birthInput);
+    if (foundId) {
+      popupMessage.innerHTML = "아이디는 " + foundId + "입니다.";
+    } else {
+      popupMessage.innerHTML = "일치하는 아이디가 없습니다.";
+      setTimeout(function() {
+        popupMessage.style.display = 'none';
+      }, 2000);
+    }
+
+    // 에러 메시지 초기화
+    nameErrorMessage.innerHTML = "";
+    birthdayErrorMessage.innerHTML = "";
+    popupMessage.style.display = 'block'; // 팝업 메시지 표시
   }
 
-  function findId(name, phone) {
-    // 아이디 찾기 로직 php를 이용하여 불러오기
-    if (name === "홍길동" && phone === "010-1234-5678") {
+  function findId(name, birthday) {
+    //아이디찾기 로직
+    if (name === "홍길동" && birthday === "2024-04-17") {
       return "hong123";
     } else {
       return null;
     }
   }
+
 </script>
+
 </body>
+<script src="/js/findId.js"></script>
 </html>

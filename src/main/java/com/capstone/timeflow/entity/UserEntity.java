@@ -2,18 +2,25 @@ package com.capstone.timeflow.entity;
 
 import com.capstone.timeflow.dto.UserDTO;
 import jakarta.persistence.*;
-import jdk.jfr.Unsigned;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 
+
+
 @Entity
 @Getter
 @Setter
+@Builder
 @Table(name = "USER")
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +47,10 @@ public class UserEntity {
 
     @Column(name = "userJoinDate")
     private LocalDateTime userJoinDate = LocalDateTime.now(); // 현재 시간으로 초기화
+
+    @Column(name="userRole")
+    private Role role;
+
     public static UserEntity toUserEntity(UserDTO userDTO){
         UserEntity userEntity = new UserEntity(); //userEntity 객체 생성
         userEntity.setUserName(userDTO.getUserName()); //이름
@@ -53,6 +64,7 @@ public class UserEntity {
             userEntity.setUserJoinDate(userDTO.getUserJoinDate());
         }
         userEntity.setUserSex(userDTO.getUserSex()); //성별
+        userEntity.setRole(userDTO.getRole());
         // 생년월일을 통해 나이 계산
         LocalDate today = LocalDate.now(); // 현재 날짜
         LocalDate birthDate = userDTO.getUserBirth(); // 사용자의 생년월일
@@ -62,5 +74,7 @@ public class UserEntity {
         }
         return userEntity;
     }
+
+
 }
 
