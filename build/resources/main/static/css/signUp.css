@@ -1,0 +1,140 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    font-size: 11px;
+}
+
+html{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+body{
+    width: 30%;
+}
+
+input{
+    border: 1px solid black;
+    border-radius: 3px;
+    line-height: 35px;
+    font-size:12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.wrapper{
+    padding: 10px;
+}
+
+div{
+    padding-top: 3px;
+    padding-bottom: 8px;
+}
+
+.title{
+    text-align: center;
+    font-weight: 700;
+}
+
+.email input{
+    width: 100%;
+}
+
+.name input{
+    width: 100%;
+}
+
+.password input{
+    width: 100%;
+}
+
+.info {
+    position: relative;
+    padding-bottom: 60px;
+}
+
+/* 출생 연도 드롭다운 스타일 */
+#birth-year {
+    box-sizing: border-box;
+    position: absolute;
+    width: 150px;
+    height: 49px;
+    left: 0px; /* .info 내에서의 왼쪽 기준 위치 */
+    top: 20px; /* "생년월일" 텍스트 바로 아래에 위치하도록 조정 */
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+/* 월 드롭다운 스타일 */
+#birth-month {
+    box-sizing: border-box;
+    position: absolute;
+    width: 150px;
+    height: 49px;
+    left: 176px; /* #birth-year 다음에 위치 */
+    top: 20px; /* 동일한 높이에 위치하도록 조정 */
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+/* 일 드롭다운 스타일 */
+#birth-day {
+    box-sizing: border-box;
+    position: absolute;
+    width: 150px;
+    height: 49px;
+    left: 350px; /* #birth-month 다음에 위치 */
+    top: 20px; /* 동일한 높이에 위치하도록 조정 */
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.gender {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.buttons {
+    display: flex; /* 버튼들을 가로로 나열 */
+}
+
+.gender button {
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+}
+
+.genders:focus{
+    background-color:#0056b3;
+}
+
+/* 버튼 사이의 간격을 추가하고 싶다면, 다음과 같이 스타일을 적용할 수 있습니다. */
+.gender .buttons button:not(:last-child) {
+    margin-right: 10px; /* 마지막 버튼을 제외한 버튼에 오른쪽 여백 추가 */
+}
+
+.signUp button {
+    width: 100%;
+    cursor: pointer;
+    height: 30px;
+    background-color: #0056b3; /* 버튼의 배경색을 지정 */
+    color: white; /* 버튼의 글자색을 지정 */
+    border: none; /* 버튼의 테두리를 제거 */
+}
+
+.error{
+    font-size: 1px;
+    height: 20px;
+    color:red;
+    font-weight: 700;
+}
+.selected {
+    background-color: blue;
+    color: white;
+}
