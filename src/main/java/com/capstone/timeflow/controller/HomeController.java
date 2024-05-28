@@ -1,18 +1,15 @@
 package com.capstone.timeflow.controller;
 
 import com.capstone.timeflow.dto.LoginRequest;
-import com.capstone.timeflow.dto.UserDTO;
 import com.capstone.timeflow.entity.UserEntity;
 import com.capstone.timeflow.service.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -52,7 +49,7 @@ public class HomeController {
         session.setAttribute("userId", userEntity.getUserId());
         session.setAttribute("userName", userEntity.getUserName());
 
-        session.setMaxInactiveInterval(3600); // Session이 30분동안 유지
+        session.setMaxInactiveInterval(10800); // Session이 3시간동안 유지
         System.out.println("Saved userId in session: " + session.getAttribute("userId"));
         System.out.println("login success");
         return "main";

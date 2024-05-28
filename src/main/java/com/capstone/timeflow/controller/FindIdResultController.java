@@ -17,18 +17,18 @@ public class FindIdResultController {
     private FindEmailService findEmailService;
     @PostMapping("/user/findId")
     public String findIdResult(@RequestParam("userName") String userName,
-                               @RequestParam("userBirth") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate userBirth,
+                               @RequestParam("birthday_year") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate userBirth,
                                Model model) {
 
         try {
             String userEmail = findEmailService.findEmailByNameAndBirthDate(userName, userBirth);
-            model.addAttribute("findIdResult", userEmail);
+            model.addAttribute("userEmail", userEmail); // 사용자 이메일 추가
+            model.addAttribute("isSuccess", true); // 성공 상태 추가
             System.out.println(userEmail);
-            return "findIdResult";
+            return "findIdResult"; // 사용자 이메일을 출력할 페이지
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-            System.out.println("에러나요");
-            return "findIdResult"; // 실제 서비스에서는 사용자에게 예외 메시지를 직접 반환하는 것보다 오류 코드나 메시지를 정의하는 것이 좋습니다.
+            model.addAttribute("isSuccess", false); // 실패 상태 추가
+            return "findIdResult"; // 오류 메시지를 출력할 페이지
         }
     }
 }

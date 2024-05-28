@@ -1,6 +1,5 @@
 package com.capstone.timeflow.service;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.security.SecureRandom;

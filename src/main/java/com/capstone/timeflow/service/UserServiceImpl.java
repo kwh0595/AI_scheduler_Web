@@ -2,18 +2,13 @@ package com.capstone.timeflow.service;
 
 import com.capstone.timeflow.dto.LoginRequest;
 import com.capstone.timeflow.dto.UserDTO;
-import com.capstone.timeflow.entity.Role;
 import com.capstone.timeflow.entity.UserEntity;
 
 import com.capstone.timeflow.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -33,7 +28,6 @@ public class UserServiceImpl implements UserService{
            //비밀번호 암호화
            String encodedPassword = bCryptPasswordEncoder.encode(userDTO.getUserPassword());
            userEntity.setUserPassword(encodedPassword);//암호화된 비밀번호를 엔티티에 저장
-           userEntity.setRole(Role.USER);
            userRepository.save(userEntity); //사용자 레포지토리에 암호화된 비밀번호 저장
     }
     /**

@@ -1,3 +1,4 @@
+/*
 package com.capstone.timeflow.controller;
 
 import com.capstone.timeflow.service.RandomPasswordService;
@@ -35,3 +36,4 @@ public class SendingMailController {
         return mv;
     }
 }
+*/

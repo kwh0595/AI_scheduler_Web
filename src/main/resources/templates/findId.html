@@ -1,95 +1,49 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
   <title>아이디 찾기</title>
   <link href="/css/findId.css" rel="stylesheet"/>
-  <style>
-    /* 팝업 메시지 스타일 */
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #fff;
-      padding: 20px;
-      border: 1px solid #ccc;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-    }
-  </style>
 </head>
 <body>
 <div class="find-id-form">
   <h2>아이디 찾기</h2>
-  <form onsubmit="event.preventDefault(); validateForm();">
+  <form id="findIdForm">
     <div class="form-group">
       <label for="userName">이름:</label>
-      <input type="text" id="userName" name="name" required>
+      <input type="text" id="userName" required>
       <span id="name_error_message"></span>
     </div>
     <div class="form-group">
-      <label for="userBirth">생년월일:</label>
-      <input type="date" id="userBirth" name="birth" required>
+      <label for="birthday_year">생년월일:</label>
+      <select class="box" id="birthday_year" required>
+        <option disabled selected>출생 연도</option>
+      </select>
+      <select class="box" id="birthday_month" required>
+        <option disabled selected>월</option>
+      </select>
+      <select class="box" id="birthday_day" required>
+        <option disabled selected>일</option>
+      </select>
       <span id="birthday_error_message"></span>
     </div>
     <button type="submit">아이디 찾기</button>
   </form>
 </div>
 
+<div class = "found-container">
+  <div class = "found-success" style ="display:none;">
+    <h4>회원님의 이메일은</h4>
+    <div th:text="${userEmail}"></div>
+    <h4>입니다.</h4>
+    <button onclick="location.href='/login'">로그인</button>
+  </div>
+  <div class = "found-fail" style = "display:none;">
+    <h4>등록된 정보가 없습니다.</h4>
+    <button onclick="location.href='/join'">회원가입</button>
+  </div>
+</div>
 <div id="popup_message" class="popup"></div>
-<script>
-  // findID.js
-  function validateForm() {
-    var nameInput = document.getElementById('userName').value;
-    var birthInput = document.getElementById('userBirth').value;
-    var popupMessage = document.getElementById('popup_message');
-    var nameErrorMessage = document.getElementById('name_error_message');
-    var birthdayErrorMessage = document.getElementById('birthday_error_message');
-
-    if (!nameInput) {
-      nameErrorMessage.innerHTML = "이름을 입력해주세요.";
-      birthdayErrorMessage.innerHTML = "";
-      popupMessage.style.display = 'none'; // 에러 메시지 출력 시 팝업 숨기기
-      return; // 폼 제출 중단
-    }
-
-    if (!birthInput) {
-      birthdayErrorMessage.innerHTML = "생년월일을 입력해주세요.";
-      nameErrorMessage.innerHTML = "";
-      popupMessage.style.display = 'none'; // 에러 메시지 출력 시 팝업 숨기기
-      return; // 폼 제출 중단
-    }
-
-    // 아이디 찾기 로직
-    var foundId = findId(nameInput, birthInput);
-    if (foundId) {
-      popupMessage.innerHTML = "아이디는 " + foundId + "입니다.";
-    } else {
-      popupMessage.innerHTML = "일치하는 아이디가 없습니다.";
-      setTimeout(function() {
-        popupMessage.style.display = 'none';
-      }, 2000);
-    }
-
-    // 에러 메시지 초기화
-    nameErrorMessage.innerHTML = "";
-    birthdayErrorMessage.innerHTML = "";
-    popupMessage.style.display = 'block'; // 팝업 메시지 표시
-  }
-
-  function findId(name, birthday) {
-    //아이디찾기 로직
-    if (name === "홍길동" && birthday === "2024-04-17") {
-      return "hong123";
-    } else {
-      return null;
-    }
-  }
-
-</script>
-
-</body>
 <script src="/js/findId.js"></script>
+</body>
 </html>

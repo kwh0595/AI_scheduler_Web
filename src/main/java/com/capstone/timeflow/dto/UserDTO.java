@@ -1,6 +1,5 @@
 package com.capstone.timeflow.dto;
 
-import com.capstone.timeflow.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +9,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-
+@Getter
+@Setter
 @NoArgsConstructor //기본생성자
 @AllArgsConstructor //모든 필드를 가지는 생성자
 public class UserDTO {
@@ -22,9 +22,10 @@ public class UserDTO {
     private String userSex;
     private Integer userAge;
     private LocalDateTime userJoinDate;
-    private Role role;
 
-
+    public Long getUserId() {
+        return userId;
+    }
 
     public void setUserId(Long userId) {
         this.userId = userId;
@@ -85,13 +86,5 @@ public class UserDTO {
 
     public void setUserJoinDate(LocalDateTime userJoinDate) {
         this.userJoinDate = userJoinDate;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }
