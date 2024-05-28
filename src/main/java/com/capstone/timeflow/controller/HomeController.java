@@ -50,6 +50,8 @@ public class HomeController {
         HttpSession session = httpServletRequest.getSession(true);  // Session이 없으면 생성
         // 세션에 userId를 넣어줌
         session.setAttribute("userId", userEntity.getUserId());
+        session.setAttribute("userName", userEntity.getUserName());
+
         session.setMaxInactiveInterval(3600); // Session이 30분동안 유지
         System.out.println("Saved userId in session: " + session.getAttribute("userId"));
         System.out.println("login success");
