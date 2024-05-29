@@ -77,7 +77,6 @@ function validateForm() {
     day = '0' + day;
   }
 
-
   // AJAX 요청 보내기
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/user/findId', true);

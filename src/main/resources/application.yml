@@ -9,11 +9,13 @@ spring:
     password: 20020619
   thymeleaf:
     cache: false
-
+  # spring data jpa 설정
   security:
     user:
       name: user
       password: 1234
+  mvc:
+    log-request-details: true
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
@@ -21,6 +23,17 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  jackson:
+    serialization:
+      indent-output: true
+
+
+jwt:
+  secret: 64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff
+
+logging:
+  level:
+    org.springframework.web: DEBUG
 
   # spring mail sender 설정
   mail:
