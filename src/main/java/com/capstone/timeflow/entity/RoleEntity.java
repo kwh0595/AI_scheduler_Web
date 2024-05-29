@@ -2,6 +2,7 @@ package com.capstone.timeflow.entity;
 
 import com.capstone.timeflow.initialdata.enumRole;
 import jakarta.persistence.*;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.Getter;
 import lombok.Setter;
 

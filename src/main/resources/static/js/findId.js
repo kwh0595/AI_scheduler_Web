@@ -3,6 +3,10 @@ document.getElementById('findIdForm').addEventListener('submit', function(event)
   validateForm();
 });
 
+document.getElementById('findIdButton').addEventListener('click', function(event) {
+  findId();
+});
+
 // 출생 연도 옵션 생성
 var birthYearEl = document.getElementById('birthday_year');
 for (var i = 1950; i <= 2024; i++) {
@@ -38,7 +42,6 @@ function updateDays() {
 
 document.getElementById('birthday_year').addEventListener('change', updateDays);
 document.getElementById('birthday_month').addEventListener('change', updateDays);
-//document.getElementById('birthday_day').addEventListener('change', updateDays);
 
 function validateForm() {
   var nameInput = document.getElementById('userName').value;
@@ -61,15 +64,19 @@ function validateForm() {
     return;
   }
 
+  // 입력된 연, 월, 일을 각각 변수에 저장합니다.
+  var year = encodeURIComponent(yearInput);
   var month = encodeURIComponent(monthInput);
   var day = encodeURIComponent(dayInput);
 
+// 월과 일이 한 자리 숫자일 경우, 앞에 '0'을 추가합니다.
   if (month.length === 1) {
     month = '0' + month;
   }
   if (day.length === 1) {
     day = '0' + day;
   }
+
 
   // AJAX 요청 보내기
   var xhr = new XMLHttpRequest();
@@ -85,7 +92,7 @@ function validateForm() {
       }
       else{
         document.querySelector('.found-fail').style.display='block';
-        document.querySelector('.found-success').style.display='none'
+        document.querySelector('.found-success').style.display='none';
       }
     }
   };
@@ -94,11 +101,6 @@ function validateForm() {
   document.getElementById('name_error_message').innerHTML = "";
   document.getElementById('birthday_error_message').innerHTML = "";
 }
-
-function login(){
-  window.location.href='logIn.html';
-}
-
-function joinin(){
-  window.location.href='signUp.html';
+function findId(){
+  validateForm();
 }

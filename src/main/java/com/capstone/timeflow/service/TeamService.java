@@ -6,6 +6,9 @@ import com.capstone.timeflow.entity.UserEntity;
 import com.capstone.timeflow.initialdata.enumRole;
 import com.capstone.timeflow.repository.RoleRepository;
 import com.capstone.timeflow.repository.TeamRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Random;
@@ -39,8 +42,22 @@ public class TeamService {
         return team;
     }
 
+    public TeamEntity getTeamByJoinCode(String joinCode) {
+        return teamRepository.findByJoinCode(joinCode).orElse(null);
+    }
+
+    public TeamEntity getTeamByTeamId(Long teamId) {
+        return teamRepository.findByTeamId(teamId).orElse(null);
+    }
+
+    @Transactional
     public void deleteTeam(Long teamId) {
-        teamRepository.deleteById(teamId);
+        try {
+            teamRepository.deleteById(teamId);
+        } catch (EntityNotFoundException e) {
+            // 예외 처리 로직
+            throw e; // 또는 새로운 예외로 변환하여 throw
+        }
     }
 
     private String generateInvitationCode() {
