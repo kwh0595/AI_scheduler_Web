@@ -1,4 +1,3 @@
-// 노트북 배터리 없어서 좀 이따 또 수정할께 일단 업로드
 const calendarDates = document.getElementById("calendarDates");
 const currentMonthElement = document.getElementById("currentMonth");
 const prevBtn = document.getElementById("prevBtn");

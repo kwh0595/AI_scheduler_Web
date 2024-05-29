@@ -23,10 +23,19 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
+  jackson:
+    serialization:
+      indent-output: true
+
+
 jwt:
   secret: 64461f01e1af406da538b9c48d801ce59142452199ff112fb5404c8e7e98e3ff
 
 logging:
   level:
     org.springframework.web: DEBUG
+
+
+
+
 

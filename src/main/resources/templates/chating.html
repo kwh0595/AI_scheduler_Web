@@ -5,6 +5,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
 </head>
 
 <body>
@@ -63,9 +65,28 @@
 
             function send(){
                 let msg = document.getElementById("msg");
-                console.log(username + ":" + msg.value);
-                websocket.send(username + ":" + msg.value);
+                let userMessage = msg.value;
+                console.log(username + ":" + userMessage);
+                websocket.send(username + ":" + userMessage);
                 msg.value = '';
+
+                // GPT-4 API 호출
+                $.ajax({
+                    url: '/gpt-chat',
+                    method: 'GET',
+                    data: { prompt: userMessage },
+                    success: function(response) {
+                        let gptMessage = response.choices[0].message.content; // 응답의 메시지 내용에 맞게 수정
+                        let gptStr = "<div class='col-6'>";
+                        gptStr += "<div class='alert alert-info'>";
+                        gptStr += "<b>GPT: " + gptMessage + "</b>";
+                        gptStr += "</div></div>";
+                        $("#msgArea").append(gptStr);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
             }
 
             //채팅창에서 나갔을 때

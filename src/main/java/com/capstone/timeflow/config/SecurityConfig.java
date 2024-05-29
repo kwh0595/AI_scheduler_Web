@@ -39,7 +39,7 @@ public class SecurityConfig{
                 .csrf(AbstractHttpConfigurer::disable) // 로컬에서 확인하기 위해 csrf 비활성화
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/login", "/join",
-                                "/user/signup", "/user/findId","/chat","/ws/chat", "/user/findPassword","/setSessionUsername","/getSessionUsername").permitAll() // 해당 경로에서는 로그인 없이 접근 가능
+                                "/user/signup", "/user/findId","/chat","/ws/chat", "/user/findPassword","/setSessionUsername","/getSessionUsername","/send","/gpt-chat").permitAll() // 해당 경로에서는 로그인 없이 접근 가능
                         .requestMatchers("/favicon.ico").permitAll()
                         .requestMatchers("/login/info").permitAll()
                         .anyRequest().authenticated()

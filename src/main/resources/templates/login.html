@@ -21,8 +21,8 @@
             <input type="password" th:field="*{userPassword}" placeholder="PASSWORD" />
         </div>
         <div th:if="${#fields.hasGlobalErrors()}">
-        <br/>
-        <div class="error-class" th:each="error : ${#fields.globalErrors()}" th:text="${error}" />
+            <br/>
+            <div class="error-class" th:each="error : ${#fields.globalErrors()}" th:text="${error}" />
         </div>
         <div class="submit_button">
             <input type="submit" value="Login" />
